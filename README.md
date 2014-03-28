@@ -1,5 +1,5 @@
-# Money Ticker
----
+Money Ticker
+============
 
 Money Ticker is a jQuery plugin for showing "live" savings or spending levels.
 
