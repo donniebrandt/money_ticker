@@ -4,7 +4,7 @@
         // System-wide defaults
         var settings = $.extend({
             baseRate: 0,
-            baseDate: new Date('January 1, 2000 00:00:00'),
+            baseDate: new Date(),
             rateIncrement: 1,
             updateInterval: 1000,
             currencySymbol: '$',
@@ -49,11 +49,16 @@
                 currencySymbol: elem.data('currencySymbol') || settings.currencySymbol,
             }
 
+            if (config.baseDate == 'Invalid Date') {
+                config.baseDate = currentDate;
+            }
+
             dateDifference = getDateDiff(currentDate, config.baseDate);
             currentRate    = getCurrentRate(config.baseRate, dateDifference, config.rateIncrement);
 
             setInterval(function() {
                 currentRate = updateRate(currentRate, config.rateIncrement);
+                console.log(currentRate);
                 elem.text(config.currencySymbol + currentRate.formatMoney(2, ',', '.'));
             }, config.updateInterval);
         });
