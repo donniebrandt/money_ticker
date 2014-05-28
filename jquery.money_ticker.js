@@ -17,11 +17,11 @@
         function getCurrentRate(baseRate, dateDifference, rateIncrement) {
             return baseRate + (dateDifference * rateIncrement);
         }
-        
+
         function updateRate(currentRate, rateIncrement) {
             return currentRate + rateIncrement;
         }
-        
+
         Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
             var n             = this;
             var decPlaces     = isNaN(decPlaces = Math.abs(decPlaces))? 2: decPlaces;
@@ -39,7 +39,7 @@
             var currentRate    = 0;
             var currentDate    = new Date();
             var dateDifference = 0;
-            
+
             // Individual settings using HTML5 data attributes
             var config         = {
                 baseRate: parseFloat(elem.data('baseRate')) || settings.baseRate,
@@ -58,7 +58,6 @@
 
             setInterval(function() {
                 currentRate = updateRate(currentRate, config.rateIncrement);
-                console.log(currentRate);
                 elem.text(config.currencySymbol + currentRate.formatMoney(2, ',', '.'));
             }, config.updateInterval);
         });
